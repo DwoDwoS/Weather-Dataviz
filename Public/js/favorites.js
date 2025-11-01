@@ -1,13 +1,11 @@
 import { getFavorites, saveFavorites } from './localStorage.js';
 import { getWeather } from './script.js';
 
-// Fonction qui formate la température avec un + devant si positive
 function formatTemp(temp) {
   const ROUNDED = Math.round(temp);
   return (ROUNDED > 0 ? '+' : '') + ROUNDED;
 }
 
-// Nouvelle version : récupère la température actuelle pour chaque favori
 export async function displayFavorites() {
   const CONTAINER = document.getElementById('favorites-container');
   if (!CONTAINER) return;
@@ -44,7 +42,7 @@ export async function displayFavorites() {
       `;
 
       CARD.querySelector('button').addEventListener('click', (e) => {
-        e.stopPropagation(); // Évite conflit clic sur carte
+        e.stopPropagation();
         removeFavorite(FAV.city);
       });
 
@@ -65,21 +63,18 @@ export function addFavorite(city) {
 
   let favorites = getFavorites();
 
-  // Limite à 4 favoris
   if (favorites.length >= 4) {
     if (ERROR_CONTAINER) {
       ERROR_CONTAINER.textContent = "Vous ne pouvez avoir que 4 favoris maximum.";
       setTimeout(() => {
         ERROR_CONTAINER.textContent = '';
-      }, 5000); // Disparaît après 5 secondes
+      }, 5000);
     }
     return false;
   }
 
-  // Formate la ville : Majuscule + minuscules
   const FORMATTED_CITY = city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
 
-  // Évite les doublons
   if (favorites.some(fav => fav.city.toLowerCase() === FORMATTED_CITY.toLowerCase())) return false;
 
   favorites.push({ city: FORMATTED_CITY });

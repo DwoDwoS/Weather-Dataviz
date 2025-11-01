@@ -52,7 +52,6 @@ export async function getWeather(cityFromClick = null) {
       <img src="https://openweathermap.org/img/wn/${CURRENT.weather[0].icon}@2x.png" alt="${CURRENT.weather[0].description}" width="50" height="50" />
       `;
 
-    // Bouton favoris
     const FAVORITES = getFavorites();
     const IS_FAV = FAVORITES.some(
       (f) => f.city.toLowerCase() === CITY_INPUT.toLowerCase()
@@ -71,7 +70,6 @@ export async function getWeather(cityFromClick = null) {
 
     document.getElementById("results").style.display = "none";
 
-    // Prévisions météo
     const FORECAST_DIV = document.getElementById("forecast");
     if (FORECAST && FORECAST.list.length) {
       FORECAST_DIV.style.display = "block";
@@ -129,8 +127,6 @@ function showError(msg) {
   document.getElementById("forecast").style.display = "none";
 }
 
-// Carrousel
-
 let carouselPosition = 0;
 let autoScrollInterval;
 const AUTO_SCROLL_DELAY = 3000;
@@ -176,8 +172,6 @@ function stopAutoScroll() {
   clearInterval(autoScrollInterval);
 }
 
-// Margot : ajout de l'animation //
-// 💡 Fonction pour charger l'animation Lottie selon la météo en cours
 function updateWeatherAnimation(weatherMain) {
   let animationUrl = "";
 
@@ -204,9 +198,7 @@ function updateWeatherAnimation(weatherMain) {
         "https://lottie.host/e5e250a9-340b-4e6c-9844-6b9168d1385f/Vnzx7o3Mv2.lottie";
   }
 
-  // Supprimer l'ancienne animation si elle existe
   ANIMATION_CONTAINER.innerHTML = "";
-  // Créer une nouvelle balise dotlottie-wc
   const NEW_ANIM = document.createElement("dotlottie-wc");
   NEW_ANIM.className = "weather-animation";
   NEW_ANIM.setAttribute("src", animationUrl);
@@ -219,5 +211,4 @@ function updateWeatherAnimation(weatherMain) {
   ANIMATION_CONTAINER.appendChild(NEW_ANIM);
 }
 
-// Expose global
 window.getWeather = getWeather;
