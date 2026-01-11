@@ -31,8 +31,21 @@ html, body {
   stroke-width: 4;
 }
 
+.hour-label {
+  font-size: 12px;
+  fill: white;
+}
+
 #sky {
   bottom: 0;
-  margin-left: 7%;
+  width: 100%;
+  height: auto;
+  max-height: 400px;
   z-index: -2000;
+}
+
+@media (max-width: 768px) {
+  #sky {
+    max-height: 250px;
+  }
 }

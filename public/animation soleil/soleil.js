@@ -1,7 +1,7 @@
 const SVG = d3.select("#sky");
-const WIDTH = 800;
-const HEIGHT = 250;
-const MARGIN = { top: 40, bottom: 15, left: 50, right: -400 };
+const WIDTH = 1300;
+const HEIGHT = 400;
+const MARGIN = { top: 40, bottom: 15, left: 50, right: 50 };
 const SCALE_X = d3.scaleLinear()
   .domain([0, 23])
   .range([MARGIN.left, WIDTH - MARGIN.right]);
@@ -83,7 +83,7 @@ SVG.selectAll("text.hour-label")
   .append("text")
   .attr("class", "hour-label")
   .attr("x", d => SCALE_X(d))
-  .attr("y", HEIGHT + 7)
+  .attr("y", HEIGHT - 10)
   .attr("text-anchor", "middle")
   .attr("fill", "white")
   .text(d => `${d.toString().padStart(2, "0")}h`);
